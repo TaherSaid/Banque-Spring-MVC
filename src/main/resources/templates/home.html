@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+	<!-- CSS only -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<style>
+	.but{
+	border: none;
+	outline: none;
+	background: none;
+	}
+	</style>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Banque DSI</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a th:href="@{/Banque}">All Account</a></li>
+      <li><a th:href="@{/Banque/get}">Search Account</a></li>
+      <li><a th:href="@{/addCompte}">Add Account</a></li>
+      <li><a th:href="@{/verser}">All Virement</a></li>
+      <li><a th:href="@{/virement}">Virement</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+<center><h2>ALL ACCOUNT</h2></center>
+
+	<table class="table">
+	  <tr>
+	    <th>ID Account</th>
+	    <th>Solde</th> 
+	    <th>Date Creation</th>
+	    <th>Delete</th>
+	    <th>Update</th>
+	  </tr>
+	  <tr th:each="item:${allCompte}">
+	    <td th:text="${item.code}"></td>
+	    <td th:text="${item.solde}"></td>
+	    <td th:text="${item.dateCreation}"></td>
+	    <td><a th:href="@{/deleteUser(accountid=${item.code})}"><i class="fas fa-trash-alt"></i></a></td>
+	    <td><button type="button" class="but" data-toggle="modal" data-target="#myModal"><a th:href="@{/UpdateCompte(accountid=${item.code})}" ><i class="fas fa-trash-alt"></i></a></button></td>
+	  </tr>
+	 </table>
+</div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" >Update Account </h4>
+        </div>
+        <div class="modal-body" th:if="${upCompte}">
+          <form th:action="@{/UpdateCompte/update}" th:object="${accountForm}"  th:method="post">
+		<div>
+			<div class="form-group">
+		    	<label for="idAccount">ID Account :</label>
+		    	<input type="number" class="form-control" id="idAccount"  th:value="${upCompte.code}" placeholder="Id Account" disabled>
+		    	<input name="code" th:value="${upCompte.code}" type="hidden">
+	  		</div>
+			<div class="form-group">
+		    	<label for="soldeAccount">Solde Account :</label>
+		    	<input type="number" class="form-control" id="soldeAccount"  name="solde" th:value="${upCompte.solde}" placeholder="solde Account">
+	  		</div>
+	  		<div class="form-group">
+		    	<label for="Datecreation">Date creation account :</label>
+		    	<input type="Date" class="form-control" id="Datecreation" name="dateCreation"   th:value="${upCompte.dateCreation}" placeholder="Date creation Account">
+	  		</div>
+				<button type="submit" class="btn btn-primary mt-3" style="margin-bottom:20px">Update ACCOUNT</button>
+		</div>
+	</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+</body>
+</html>

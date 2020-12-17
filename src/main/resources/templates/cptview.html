@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Banque DSI</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a th:href="@{/Banque}">All Account</a></li>
+      <li><a th:href="@{/Banque/get}">Search Account</a></li>
+       <li><a th:href="@{/addCompte}">Add Account</a></li>
+       <li><a th:href="@{/verser}">All Virement</a></li>
+       <li><a th:href="@{/virement}">Virement</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+	<form th:action="@{/getCompte}" th:method="get">
+		<div>
+		<div class="form-group">
+	    	<label for="idAccount">Find Account :</label>
+	    	<input type="text" class="form-control" id="idAccount" name="CodeCompte" th:value="${CodeCompte}" placeholder="Compte Id">
+  		</div>
+			<button type="submit" class="btn btn-primary mt-3" style="margin-bottom:20px">Search</button>
+		</div>
+	</form>
+	<div th:if="${compte}" class="mt-5">
+	<ul class="list-group list-group-flush mt-4">
+	  <li class="list-group-item" th:text="${'Id Compte : '+ compte.code}"></li>
+	  <li class="list-group-item" th:text="${'Solde : ' + compte.solde}"></li>
+	  <li class="list-group-item"  th:text="${'Date creation : '+ compte.DateCreation}"></li>
+	</ul>
+		
+</div>
+</body>
+</html>

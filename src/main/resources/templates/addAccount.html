@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Banque DSI</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a th:href="@{/Banque}">All Account</a></li>
+      <li><a th:href="@{/Banque/get}">Search Account</a></li>
+       <li><a th:href="@{/addCompte}">Add Account</a></li>
+       <li><a th:href="@{/verser}">All Virement</a></li>
+       <li><a th:href="@{/virement}">Virement</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+	<form th:action="@{/addCompte/add}" th:object="${accountForm}"  th:method="post">
+		<div>
+			<div class="form-group">
+		    	<label for="soldeAccount">Solde Account :</label>
+		    	<input type="number" class="form-control" id="soldeAccount"  name="solde" th:value="${solde}" placeholder="solde Account">
+	  		</div>
+	  		<div class="form-group">
+		    	<label for="Datecreation">Date creation account :</label>
+		    	<input type="Date" class="form-control" id="Datecreation" name="dateCreation"   th:value="${dateCreation}" placeholder="Date creation Account">
+	  		</div>
+				<button type="submit" class="btn btn-primary mt-3" style="margin-bottom:20px">ADD NEW ACCOUNT</button>
+		</div>
+	</form>
+
+		
+</div>
+</body>
+</html>

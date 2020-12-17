@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+	<!-- CSS only -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<style>
+	.but{
+	border: none;
+	outline: none;
+	background: none;
+	}
+	</style>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Banque DSI</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a th:href="@{/Banque}">All Account</a></li>
+      <li><a th:href="@{/Banque/get}">Search Account</a></li>
+      <li><a th:href="@{/addCompte}">Add Account</a></li>
+      <li><a th:href="@{/verser}">All Virement</a></li>
+      <li><a th:href="@{/virement}">Virement</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container mt-5">
+<center><h2>ALL ACCOUNT</h2></center>
+
+	<table class="table">
+	  <tr>
+	    <th>Num operation</th>
+	    <th>Date operation</th> 
+	    <th>Montant</th>
+	    <th>Compte</th>
+	  </tr>
+	  <tr th:each="item:${allAction}">
+	    <td th:text="${item.numOperation}"></td>
+	    <td th:text="${item.dateOperation}"></td>
+	    <td th:text="${item.montant}"></td>
+	    <td th:text="${item.compte.code}"></td>
+	  </tr>
+	 </table>
+</div>
+
+
+</body>
+</html>
